@@ -42,7 +42,7 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <button className="buttonIcon" onClick={() => this.props.toggleTimer(this.props.index)}>
+        <button className="buttonIcon" onClick={() => ((this.props.activeTaskFlag && !this.props.timerOn) ? null : this.props.toggleTimer(this.props.index))}>
           <Icon type={this.props.timerOn ? 'timerOff' : 'timerOn'} />
         </button>
         {this.state.timeSpent}
@@ -63,3 +63,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)
+
+//(this.props.activeTaskFlag && !this.state.timerStarted) ? null : this.props.toggleTimer(props.state.id) 

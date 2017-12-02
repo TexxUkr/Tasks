@@ -27,6 +27,7 @@ const Todo = (props) => {
       </div>
       <div>
         <Timer
+          taskCompletedFlag={props.state.completed}
           timeSpent={props.state.timeSpent}
           timerOn={props.state.timerStarted}
           index={props.state.id}
