@@ -1,19 +1,29 @@
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from "../actions/types"
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, TOGGLE_TIMER } from '../actions/types'
 
-export default function (state = [], act) {
+export default function (state = { tasks: [], activeTask: false }, act) {
   const action = !(act) ? { type: 'undefined', payload: '' } : act
-  let newState = []
+  let newTasks = [...state.tasks]
+  let activeTaskFlag
   switch (action.type) {
     case ADD_TODO:
-      return [...state, action.todo]
+      return { ...state, tasks: [...newTasks, action.todo] }
     case DELETE_TODO:
-      return state.filter(({ id }) => id !== action.id)
+      return { ...state, tasks: [...state.tasks.filter(({ id }) => id !== action.id)] }
     case TOGGLE_TODO:
-      newState = state.map((todo) => {
+      newTasks = state.tasks.map((todo) => {
         if (todo.id === action.id) return { ...todo, completed: !todo.completed }
         return todo
       })
-      return newState
+      return { ...state, tasks: newTasks }
+    case TOGGLE_TIMER:
+      newTasks = state.tasks.map((todo) => {
+        if (todo.id === action.id) {
+          activeTaskFlag = !todo.timerStarted
+          return { ...todo, timerStarted: !todo.timerStarted }
+        }
+        return todo
+      })
+      return { ...state, tasks: newTasks, activeTask: activeTaskFlag }
     default:
       return state
   }

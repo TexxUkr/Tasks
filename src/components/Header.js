@@ -16,7 +16,12 @@ class Header extends React.Component {
   addTodo = (e) => {
     console.info('addCommentFormSubmit', this.state.todoText)
     e.preventDefault()
-    this.props.addTodo({ text: this.state.todoText, completed: false })
+    this.props.addTodo({
+      text: this.state.todoText,
+      completed: false,
+      timerStarted: false,
+      timeSpent: 0,
+    })
     this.setState(state => ({ ...state, todoText: '' }))
   }
 
@@ -49,7 +54,7 @@ Header.propTypes = {
   className: PropTypes.string,
 }
 
-const HeaderStyled = styled(Header)`
+const HeaderStyled = styled(Header) `
 width: 100%;
 .inputHeader {
   box-sizing: border-box;

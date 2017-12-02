@@ -9,7 +9,7 @@ const TodosList = props => (
     {
       props.todos.length === 0 ? (null
       ) : (
-          props.todos.map(todo => (<Todo key={todo.id} state={todo} />))
+          props.todos.map(todo => (<Todo key={todo.id} state={todo} activeTaskFlag={props.activeTaskFlag} />))
         )
     }
   </div>
@@ -17,11 +17,13 @@ const TodosList = props => (
 
 TodosList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activeTaskFlag: PropTypes.bool.isRequired,
 }
 
 function mapStateToProps(state) {
   return ({
-    todos: todosSelector(state.todos, state.filters.showByStatus),
+    todos: todosSelector(state.todos.tasks, state.filters.showByStatus),
+    activeTaskFlag: state.todos.activeTask,
   })
 }
 

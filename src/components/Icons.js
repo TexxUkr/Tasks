@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 const unDoneIcon = require('react-icons/lib/fa/circle-o')
 const closeIcon = require('react-icons/lib/md/close')
 const doneIcon = require('react-icons/lib/fa/check-circle-o')
-const timerOnIcon = require('react-icons/lib/md/timer-off')
-const timerOffIcon = require('react-icons/lib/md/timer')
+const timerOffIcon = require('react-icons/lib/md/timer-off')
+const timerOnIcon = require('react-icons/lib/md/timer')
 
 const iconsMapping = new Map()
 iconsMapping.set('close', { icon: closeIcon, color: 'red' })
@@ -14,7 +14,8 @@ iconsMapping.set('done', { icon: doneIcon, color: 'lightgreen' })
 iconsMapping.set('undone', { icon: unDoneIcon, color: 'grey' })
 iconsMapping.set('default', { icon: unDoneIcon, color: 'grey' })
 iconsMapping.set('timerOn', { icon: timerOnIcon, color: 'green' })
-iconsMapping.set('timerOff', { icon: timerOffIcon, color: 'green' })
+iconsMapping.set('timerOff', { icon: timerOffIcon, color: 'red' })
+iconsMapping.set('timerOnGray', { icon: timerOnIcon, color: 'grey' })
 
 
 const Icon = (props) => {

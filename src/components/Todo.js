@@ -9,11 +9,13 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { deleteTodo, toggleTodo } from '../actions'
+import { deleteTodo, toggleTodo, toggleTimer} from '../actions'
 import Icon from './Icons'
 
 const Todo = (props) => {
   const completedIconState = props.state.completed ? 'done' : 'undone'
+  let timerIcon = props.state.timerStarted ? 'timerOff' : 'timerOn'
+  if (props.activeTaskFlag && !props.state.timerStarted) timerIcon = 'timerOnGray'
   return (
     <div className={props.className} >
       <div className="leftSide">
@@ -24,9 +26,14 @@ const Todo = (props) => {
           {props.state.text}
         </div>
       </div>
-      <button className="buttonIcon" onClick={() => { props.deleteTodo(props.state.id) }}>
-        <Icon type="close" />
-      </button>
+      <div>
+        <button className="buttonIcon" onClick={() => {(props.activeTaskFlag && !props.state.timerStarted) ? null : props.toggleTimer(props.state.id) }}>
+          <Icon type={timerIcon} />
+        </button>
+        <button className="buttonIcon" onClick={() => { props.deleteTodo(props.state.id) }}>
+          <Icon type="close" />
+        </button>
+      </div>
     </div>
   )
 }
@@ -37,10 +44,13 @@ Todo.propTypes = {
     completed: PropTypes.bool,
     text: PropTypes.string,
     id: PropTypes.string,
+    timerStarted: PropTypes.bool,
   }).isRequired,
   toggleTodo: PropTypes.func.isRequired,
+  toggleTimer: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   className: PropTypes.string,
+  activeTaskFlag: PropTypes.bool.isRequired,
 }
 
 Todo.defaultProps = {
@@ -50,9 +60,10 @@ Todo.defaultProps = {
 const mapDispatchToProps = dispatch => ({
   deleteTodo: index => dispatch(deleteTodo(index)),
   toggleTodo: index => dispatch(toggleTodo(index)),
+  toggleTimer: index => dispatch(toggleTimer(index)),
 })
 
-const TodoStyled = styled(Todo)`
+const TodoStyled = styled(Todo) `
 padding-left: 12px;
 padding-right: 12px;
 padding-top: 10px;

@@ -58,7 +58,7 @@ align-items: flex-start;
 
 function mapStateToProps(state) {
   return ({
-    total: state.todos.length,
+    total: state.todos.tasks.length,
     filter: state.filters.showByStatus,
   })
 }
