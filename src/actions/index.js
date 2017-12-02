@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, TOGGLE_TIMER } from './types'
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, TOGGLE_TIMER, UPDATE_TIMER } from './types'
 
 
 const addTodo = (todo) => {
@@ -37,4 +37,14 @@ const toggleTimer = (index) => {
   })
 }
 
-export { addTodo, deleteTodo, toggleTodo, toggleTimer }
+const updateTimer = (index, timerStarted, timeSpent) => {
+  console.info('dipatcher update timer has been called', index)
+  return ({
+    type: UPDATE_TIMER,
+    id: index,
+    timerStarted: timerStarted, 
+    timeSpent: timeSpent,
+  })
+}
+
+export { addTodo, deleteTodo, toggleTodo, toggleTimer, updateTimer }

@@ -9,13 +9,12 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { deleteTodo, toggleTodo, toggleTimer} from '../actions'
+import { deleteTodo, toggleTodo } from '../actions'
 import Icon from './Icons'
+import Timer from './Timer'
 
 const Todo = (props) => {
   const completedIconState = props.state.completed ? 'done' : 'undone'
-  let timerIcon = props.state.timerStarted ? 'timerOff' : 'timerOn'
-  if (props.activeTaskFlag && !props.state.timerStarted) timerIcon = 'timerOnGray'
   return (
     <div className={props.className} >
       <div className="leftSide">
@@ -27,9 +26,11 @@ const Todo = (props) => {
         </div>
       </div>
       <div>
-        <button className="buttonIcon" onClick={() => {(props.activeTaskFlag && !props.state.timerStarted) ? null : props.toggleTimer(props.state.id) }}>
-          <Icon type={timerIcon} />
-        </button>
+        <Timer
+          timeSpent={props.state.timeSpent}
+          timerOn={props.state.timerStarted}
+          index={props.state.id}
+        />
         <button className="buttonIcon" onClick={() => { props.deleteTodo(props.state.id) }}>
           <Icon type="close" />
         </button>
@@ -45,12 +46,11 @@ Todo.propTypes = {
     text: PropTypes.string,
     id: PropTypes.string,
     timerStarted: PropTypes.bool,
+    timeSpent: PropTypes.number,
   }).isRequired,
   toggleTodo: PropTypes.func.isRequired,
-  toggleTimer: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   className: PropTypes.string,
-  activeTaskFlag: PropTypes.bool.isRequired,
 }
 
 Todo.defaultProps = {
@@ -60,7 +60,6 @@ Todo.defaultProps = {
 const mapDispatchToProps = dispatch => ({
   deleteTodo: index => dispatch(deleteTodo(index)),
   toggleTodo: index => dispatch(toggleTodo(index)),
-  toggleTimer: index => dispatch(toggleTimer(index)),
 })
 
 const TodoStyled = styled(Todo) `
@@ -98,3 +97,9 @@ align-items: flex-start;
 
 export default connect(null, mapDispatchToProps)(TodoStyled)
 
+/*
+ <button className="buttonIcon" onClick={() => { (props.activeTaskFlag && !props.state.timerStarted) ? null : props.toggleTimer(props.state.id) }}>
+          <Icon type={timerIcon} />
+        </button>
+
+*/
