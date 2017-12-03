@@ -25,7 +25,7 @@ const Todo = (props) => {
           {props.state.text}
         </div>
       </div>
-      <div>
+      <div className="rightSide">
         <Timer
           taskCompletedFlag={props.state.completed}
           timeSpent={props.state.timeSpent}
@@ -78,6 +78,10 @@ display: flex;
 justify-content: space-between;
 align-items: flex-start;
 .leftSide {
+  flex-direction: row;
+  display: flex;
+}
+.rightSide {
   flex-direction: row;
   display: flex;
 }

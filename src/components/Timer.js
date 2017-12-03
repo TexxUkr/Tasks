@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { updateTimer } from '../actions'
@@ -14,12 +15,12 @@ class Timer extends React.Component {
 
   componentWillReceiveProps = (nextProps) => {
     console.info('component will receive new props', nextProps)
-    if (nextProps.timerOn) this.interval = setInterval(this.tick, 1000)
-    else clearInterval(this.interval)
+    if (!this.props.timerOn && nextProps.timerOn) this.interval = setInterval(this.tick, 1000)
+    else if (!nextProps.timerOn) clearInterval(this.interval)
   }
 
   componentWillUnmount = () => {
-    console.info('Timer will unmount here', this.state.timeSpent)
+    console.info('Timer will unmount here', this.props.index)
     this.props.updateTimer(this.props.index, false, this.state.timeSpent)
     clearInterval(this.interval)
   }
@@ -30,19 +31,21 @@ class Timer extends React.Component {
   }
 
   render() {
+    let iconType = this.props.timerOn ? 'timerOff' : 'timerOn'
+    if ((this.props.activeTaskFlag && !this.props.timerOn) || this.props.taskCompletedFlag) iconType = 'timerOnGray'
     return (
-      <div>
+      <div className={this.props.className}>
         <button
           className="buttonIcon"
           onClick={() => (
-            ((this.props.activeTaskFlag && !this.props.timerOn) || this.props.taskCompletedFlag) 
-            ? null : this.props.updateTimer(
-              this.props.index,
-              !this.props.timerOn,
-              this.state.timeSpent,
-            )
+            ((this.props.activeTaskFlag && !this.props.timerOn) || this.props.taskCompletedFlag)
+              ? null : this.props.updateTimer(
+                this.props.index,
+                !this.props.timerOn,
+                this.state.timeSpent,
+              )
           )}>
-          <Icon type={this.props.timerOn ? 'timerOff' : 'timerOn'} />
+          <Icon type={iconType} />
         </button>
         {this.state.timeSpent}
       </div>
@@ -60,4 +63,12 @@ function mapStateToProps(state) {
   })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Timer)
+const TimerStyled = styled(Timer) `
+flex-direction: row;
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+`
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimerStyled)
