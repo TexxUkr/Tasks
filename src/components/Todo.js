@@ -81,6 +81,7 @@ align-items: center;
   flex-direction: row;
   display: flex;
   align-items: center;
+  padding-right: 20px;
 }
 .rightSide {
   flex-direction: row;
@@ -89,6 +90,7 @@ align-items: center;
 .buttonIcon {
   color: white;
   padding: 3px;
+  padding-right: 10px;
   background-color: rgba(34, 37, 41, 0);
   border: 0px;
   outline-style:none;
