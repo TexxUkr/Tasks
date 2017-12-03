@@ -1,23 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { toggleTimer, updateTimer } from '../actions'
+import { updateTimer } from '../actions'
 import Icon from './Icons'
 
 class Timer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      timerOn: props.timerOn,
       timeSpent: props.timeSpent,
-    }
-  }
-
-  componentDidMount = () => {
-    console.info('Timer did mount here')
-    if (this.state.timerOn) {
-      this.setState(state => ({ ...state, timeSpent: this.props.timeSpent }))
-      this.interval = setInterval(this.tick, 1000)
     }
   }
 
@@ -29,8 +20,7 @@ class Timer extends React.Component {
 
   componentWillUnmount = () => {
     console.info('Timer will unmount here', this.state.timeSpent)
-    this.props.toggleTimer(this.props.index)
-    this.props.updateTimer(this.props.index, false, this.state.timeSpent)
+    if (this.props.timerOn) this.props.updateTimer(this.props.index, false, this.state.timeSpent)
     clearInterval(this.interval)
   }
 
@@ -42,7 +32,16 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <button className="buttonIcon" onClick={() => ((this.props.activeTaskFlag && !this.props.timerOn) ? null : this.props.toggleTimer(this.props.index))}>
+        <button
+          className="buttonIcon"
+          onClick={() => (
+            ((this.props.activeTaskFlag && !this.props.timerOn) || this.props.taskCompletedFlag) 
+            ? null : this.props.updateTimer(
+              this.props.index,
+              !this.props.timerOn,
+              this.state.timeSpent,
+            )
+          )}>
           <Icon type={this.props.timerOn ? 'timerOff' : 'timerOn'} />
         </button>
         {this.state.timeSpent}
@@ -52,7 +51,6 @@ class Timer extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  toggleTimer: index => dispatch(toggleTimer(index)),
   updateTimer: (index, timerStarted, timeSpent) => dispatch(updateTimer(index, timerStarted, timeSpent)),
 })
 
@@ -63,5 +61,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer)
-
-//(this.props.activeTaskFlag && !this.state.timerStarted) ? null : this.props.toggleTimer(props.state.id) 
