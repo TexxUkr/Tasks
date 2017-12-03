@@ -28,7 +28,7 @@ line-height: 1.4em;
 background: white;
 color: #4d4d4d;
 min-width: 230px;
-max-width: 550px;
+max-width: 650px;
 margin: 0 auto;
 `
 

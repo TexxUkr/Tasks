@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import { updateTimer } from '../actions'
 import Icon from './Icons'
 
@@ -20,8 +21,8 @@ class Timer extends React.Component {
   }
 
   componentWillUnmount = () => {
-    console.info('Timer will unmount here', this.props.index)
-    this.props.updateTimer(this.props.index, false, this.state.timeSpent)
+    console.info('Timer will unmount here', this.props.id)
+    this.props.updateTimer(this.props.id, false, this.state.timeSpent)
     clearInterval(this.interval)
   }
 
@@ -40,21 +41,36 @@ class Timer extends React.Component {
           onClick={() => (
             ((this.props.activeTaskFlag && !this.props.timerOn) || this.props.taskCompletedFlag)
               ? null : this.props.updateTimer(
-                this.props.index,
+                this.props.id,
                 !this.props.timerOn,
                 this.state.timeSpent,
               )
           )}>
           <Icon type={iconType} />
         </button>
-        {this.state.timeSpent}
+        {moment.utc(this.state.timeSpent*1000).format('HH:mm:ss')}
       </div>
     )
   }
 }
 
+Timer.propTypes = {
+  updateTimer: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  taskCompletedFlag: PropTypes.bool.isRequired,
+  activeTaskFlag: PropTypes.bool.isRequired,
+  timerOn: PropTypes.bool.isRequired,
+  timeSpent: PropTypes.number.isRequired,
+}
+
+Timer.defaultProps = {
+  className: '',
+}
+
+
 const mapDispatchToProps = dispatch => ({
-  updateTimer: (index, timerStarted, timeSpent) => dispatch(updateTimer(index, timerStarted, timeSpent)),
+  updateTimer: (id, timerStarted, timeSpent) => dispatch(updateTimer(id, timerStarted, timeSpent)),
 })
 
 function mapStateToProps(state) {
@@ -64,9 +80,10 @@ function mapStateToProps(state) {
 }
 
 const TimerStyled = styled(Timer) `
+min-width: 120px;
 flex-direction: row;
 display: flex;
-justify-content: space-between;
+justify-content: left;
 align-items: flex-start;
 `
 

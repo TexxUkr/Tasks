@@ -30,7 +30,7 @@ const Todo = (props) => {
           taskCompletedFlag={props.state.completed}
           timeSpent={props.state.timeSpent}
           timerOn={props.state.timerStarted}
-          index={props.state.id}
+          id={props.state.id}
         />
         <button className="buttonIcon" onClick={() => { props.deleteTodo(props.state.id) }}>
           <Icon type="close" />
@@ -76,10 +76,11 @@ border-bottom : 1px solid rgb(68, 74, 82);
 flex-direction: row;
 display: flex;
 justify-content: space-between;
-align-items: flex-start;
+align-items: center;
 .leftSide {
   flex-direction: row;
   display: flex;
+  align-items: center;
 }
 .rightSide {
   flex-direction: row;
@@ -88,7 +89,6 @@ align-items: flex-start;
 .buttonIcon {
   color: white;
   padding: 3px;
-  align-self: flex-start;
   background-color: rgba(34, 37, 41, 0);
   border: 0px;
   outline-style:none;
@@ -101,10 +101,3 @@ align-items: flex-start;
 `
 
 export default connect(null, mapDispatchToProps)(TodoStyled)
-
-/*
- <button className="buttonIcon" onClick={() => { (props.activeTaskFlag && !props.state.timerStarted) ? null : props.toggleTimer(props.state.id) }}>
-          <Icon type={timerIcon} />
-        </button>
-
-*/
