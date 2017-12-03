@@ -20,7 +20,7 @@ class Timer extends React.Component {
 
   componentWillUnmount = () => {
     console.info('Timer will unmount here', this.state.timeSpent)
-    if (this.props.timerOn) this.props.updateTimer(this.props.index, false, this.state.timeSpent)
+    this.props.updateTimer(this.props.index, false, this.state.timeSpent)
     clearInterval(this.interval)
   }
 
