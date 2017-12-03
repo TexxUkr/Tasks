@@ -48,7 +48,9 @@ class Timer extends React.Component {
           )}>
           <Icon type={iconType} />
         </button>
-        {moment.utc(this.state.timeSpent*1000).format('HH:mm:ss')}
+        <div className="timerTime">
+          {moment.utc(this.state.timeSpent * 1000).format('HH:mm:ss')}
+        </div>
       </div>
     )
   }
@@ -85,6 +87,9 @@ flex-direction: row;
 display: flex;
 justify-content: left;
 align-items: flex-start;
+.timerTime {
+  padding-top: 3px;
+}
 `
 
 
