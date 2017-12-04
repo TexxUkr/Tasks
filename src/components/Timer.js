@@ -82,14 +82,14 @@ function mapStateToProps(state) {
 }
 
 const TimerStyled = styled(Timer) `
-min-width: 120px;
+min-width: 170px;
 flex-direction: row;
 display: flex;
 justify-content: left;
 align-items: flex-start;
 .timerTime {
   padding-top: 3px;
-}
+  min-width: 110px;
 `
 
 

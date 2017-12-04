@@ -33,7 +33,7 @@ Bottom.defaultProps = {
   className: '',
 }
 
-const BottomStyled = styled(Bottom)`
+const BottomStyled = styled(Bottom) `
 padding-left: 22px;
 padding-right: 12px;
 padding-top: 10px;

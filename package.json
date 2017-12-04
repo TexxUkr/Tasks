@@ -10,7 +10,9 @@
     "test": "jest --config=jest.config.json",
     "start": "node server/server.js",
     "electron": "electron .",
-    "electron-build": "electron-packager . Tasks --ignore=node_modules/electron*"
+    "electron-build": "electron-packager . Tasks --ignore=node_modules/electron*",
+    "electron-pack": "electron-builder --dir",
+    "electron-dist": "electron-builder"
   },
   "author": "Oleg Osadchyy",
   "license": "ISC",
