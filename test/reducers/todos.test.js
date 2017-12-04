@@ -13,10 +13,10 @@ test('should set default state', () => {
 test('should remove todo by id', () => {
   const action = {
     type: DELETE_TODO,
-    id: todos[1].id,
+    id: todos.tasks[1].id,
   }
   const state = todosReducer(todos, action)
-  expect(state).toEqual([todos[0], todos[2]])
+  expect(state).toEqual({ ...state, tasks: [todos.tasks[0], todos.tasks[2]] })
 })
 
 test('should add todo', () => {
@@ -30,15 +30,15 @@ test('should add todo', () => {
     todo: todo,
   }
   const state = todosReducer(todos, action)
-  expect(state).toEqual([...todos, todo])
+  expect(state).toEqual({ ...state, tasks: [...todos.tasks, todo] })
 })
 
 
 test('toggle todo', () => {
   const action = {
     type: TOGGLE_TODO,
-    id: todos[1].id,
+    id: todos.tasks[1].id,
   }
   const state = todosReducer(todos, action)
-  expect(state[1].completed).toEqual(!todos[1].completed)
+  expect(state.tasks[1].completed).toEqual(!todos.tasks[1].completed)
 })

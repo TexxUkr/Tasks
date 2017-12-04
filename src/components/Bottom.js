@@ -12,7 +12,7 @@ const Bottom = (props) => {
       <div className="bottomButtons">
         <button onClick={() => props.setAllFilter()} className={props.filter === 'ALL' ? 'button focused' : 'button'}>All </button>
         <button onClick={() => props.setCompletedFilter()} className={props.filter === 'COMPLETED' ? 'button focused' : 'button'}>Completed </button>
-        <button onClick={() => props.setUnCompletedFilter()} className={props.filter === 'UNCOMPLETED' ? 'button focused' : 'button'}>Active </button>
+        <button onClick={() => props.setUnCompletedFilter()} className={props.filter === 'UNCOMPLETED' ? 'button focused' : 'button'}>Uncompleted </button>
       </div>
     </div>
   )

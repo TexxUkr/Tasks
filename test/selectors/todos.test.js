@@ -4,16 +4,16 @@ import selector from '../../src/selectors/todos'
 
 
 test('should return all todos', () => {
-  const state = selector(todos, showAllFilter.showByStatus)
-  expect(state).toEqual(todos)
+  const state = selector(todos.tasks, showAllFilter.showByStatus)
+  expect(state).toEqual(todos.tasks)
 })
 
 test('should return completed todos', () => {
-  const state = selector(todos, showCompletedFilter.showByStatus)
-  expect(state).toEqual([todos[1]])
+  const state = selector(todos.tasks, showCompletedFilter.showByStatus)
+  expect(state).toEqual([todos.tasks[1]])
 })
 
 test('should return uncompleted todos', () => {
-  const state = selector(todos, showUnCompletedFilter.showByStatus)
-  expect(state).toEqual([todos[0], todos[2]])
+  const state = selector(todos.tasks, showUnCompletedFilter.showByStatus)
+  expect(state).toEqual([todos.tasks[0], todos.tasks[2]])
 })
