@@ -5,7 +5,7 @@ const filtersReducerDefaultState = {
 }
 
 export default (state = filtersReducerDefaultState, action) => {
-  console.info('filter reducer is here', action)
+  if (process.env.NODE_ENV !== 'production') console.info('filter reducer is here', action)
   switch (action.type) {
     case SET_COMPLETED_FILTER:
       return {

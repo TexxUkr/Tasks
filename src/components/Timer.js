@@ -15,19 +15,19 @@ class Timer extends React.Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    console.info('component will receive new props', nextProps)
+    if (process.env.NODE_ENV !== 'production') console.info('component will receive new props', nextProps)
     if (!this.props.timerOn && nextProps.timerOn) this.interval = setInterval(this.tick, 1000)
     else if (!nextProps.timerOn) clearInterval(this.interval)
   }
 
   componentWillUnmount = () => {
-    console.info('Timer will unmount here', this.props.id)
+    if (process.env.NODE_ENV !== 'production') console.info('Timer will unmount here', this.props.id)
     this.props.updateTimer(this.props.id, false, this.state.timeSpent)
     clearInterval(this.interval)
   }
 
   tick = () => {
-    console.info('Timer tick mount here')
+    if (process.env.NODE_ENV !== 'production') console.info('Timer tick mount here')
     this.setState(state => ({ ...state, timeSpent: state.timeSpent + 1 }))
   }
 

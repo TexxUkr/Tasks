@@ -14,7 +14,7 @@ class Header extends React.Component {
   }
 
   addTodo = (e) => {
-    console.info('addCommentFormSubmit', this.state.todoText)
+    if (process.env.NODE_ENV !== 'production') console.info('addCommentFormSubmit', this.state.todoText)
     e.preventDefault()
     this.props.addTodo({
       text: this.state.todoText,
