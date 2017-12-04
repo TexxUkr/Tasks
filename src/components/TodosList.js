@@ -28,7 +28,7 @@ function mapStateToProps(state) {
 
 const TodosListStyled = styled(TodosList) `
 max-height: 70vh;
-overflow: scroll;
+overflow: auto;
 overflow-x: hidden;
 `
 

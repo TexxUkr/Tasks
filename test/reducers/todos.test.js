@@ -4,7 +4,10 @@ import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from '../../src/actions/types'
 
 test('should set default state', () => {
   const state = todosReducer(undefined, { type: '@@INIT' })
-  expect(state).toEqual([])
+  expect(state).toEqual({
+    activeTaskFlag: false,
+    tasks: [],
+  })
 })
 
 test('should remove todo by id', () => {
