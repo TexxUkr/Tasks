@@ -1,16 +1,20 @@
 {
-  "name": "todos",
+  "name": "Tasks",
   "version": "1.0.0",
-  "description": "Todo app",
-  "main": "index.js",
+  "description": "Tasks app",
+  "main": "main.js",
   "scripts": {
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "jest --config=jest.config.json",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "electron": "electron .",
+    "electron-build": "electron-packager . Tasks --ignore=node_modules/electron*",
+    "electron-pack": "electron-builder --dir",
+    "electron-dist": "electron-builder"
   },
-  "author": "",
+  "author": "Oleg Osadchyy",
   "license": "ISC",
   "dependencies": {
     "babel": "^6.23.0",
@@ -38,6 +42,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
+    "electron": "^1.7.9",
+    "electron-builder": "^19.47.1",
+    "electron-packager": "^10.1.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-adapter-react-16": "^1.1.0",

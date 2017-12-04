@@ -68,6 +68,7 @@ padding-left: 12px;
 padding-right: 12px;
 padding-top: 10px;
 padding-bottom: 10px;
+max-height: 100px;
 color: #4d4d4d;
 background-color: rgba(0, 0, 0, 0.003);
 font-family: Roboto, Arial, sans-serif;
@@ -86,6 +87,7 @@ align-items: center;
 .rightSide {
   flex-direction: row;
   display: flex;
+  justify-content: space-between;
 }
 .buttonIcon {
   color: white;
@@ -97,8 +99,10 @@ align-items: center;
   cursor: pointer;
 }
 .todoText {
+  max-height: 100px;
   white-space: pre-line;
   word-break: break-all;
+  overflow: auto;
 }
 `
 
