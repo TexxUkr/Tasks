@@ -22,7 +22,7 @@ MainView.propTypes = {
   className: PropTypes.string,
 }
 
-const MainViewStyled = styled(MainView)`
+const MainViewStyled = styled(MainView) `
 font: 26px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 line-height: 1.4em;
 background: white;

@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import todosSelector from '../selectors/todos'
 import Todo from './Todo'
 
 const TodosList = props => (
-  <div>
+  <div className={props.className}>
     {
       props.todos.length === 0 ? (null
       ) : (
@@ -25,4 +26,11 @@ function mapStateToProps(state) {
   })
 }
 
-export default connect(mapStateToProps, null)(TodosList)
+const TodosListStyled = styled(TodosList) `
+max-height: 70vh;
+overflow: scroll;
+overflow-x: hidden;
+`
+
+
+export default connect(mapStateToProps, null)(TodosListStyled)

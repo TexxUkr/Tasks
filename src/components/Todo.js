@@ -102,7 +102,8 @@ align-items: center;
   max-height: 100px;
   white-space: pre-line;
   word-break: break-all;
-  overflow: auto;
+  overflow: scroll;
+  text-overflow: ellipsis;
 }
 `
 

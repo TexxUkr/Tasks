@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { setAllFilter, setCompletedFilter, setUnCompletedFilter } from '../actions/filters'
+import todosSelector from '../selectors/todos'
 
 const Bottom = (props) => {
-  if (props.total === 0) return null
   return (
     <div className={props.className}>
-      {props.total} Items left
+      {props.total} task{(props.total > 1 || props.total === 0) ? 's' : ''}
       <div className="bottomButtons">
         <button onClick={() => props.setAllFilter()} className={props.filter === 'ALL' ? 'button focused' : 'button'}>All </button>
         <button onClick={() => props.setCompletedFilter()} className={props.filter === 'COMPLETED' ? 'button focused' : 'button'}>Completed </button>
@@ -58,7 +58,7 @@ align-items: flex-start;
 
 function mapStateToProps(state) {
   return ({
-    total: state.todos.tasks.length,
+    total: todosSelector(state.todos.tasks, state.filters.showByStatus).length,
     filter: state.filters.showByStatus,
   })
 }

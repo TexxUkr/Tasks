@@ -38,7 +38,7 @@ class Header extends React.Component {
     return (
       <div className={this.props.className}>
         <form onSubmit={this.addTodo}>
-          <input className="inputHeader" value={this.state.todoText} onChange={this.addTodoTextChange} placeholder="What needs to be done" />
+          <input className="inputHeader" autoFocus value={this.state.todoText} onChange={this.addTodoTextChange} placeholder="What needs to be done" />
         </form>
       </div>
     )
