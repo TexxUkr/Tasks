@@ -9,7 +9,6 @@ class Header extends React.Component {
     super(props)
     this.state = {
       todoText: '',
-      allCompleted: false,
     }
   }
 
