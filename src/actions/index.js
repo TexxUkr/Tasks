@@ -3,7 +3,6 @@ import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, UPDATE_TIMER } from './types'
 
 
 const addTodo = (todo) => {
-  if (process.env.NODE_ENV !== 'production') console.info('dispatcher add todo has been called')
   return ({
     type: ADD_TODO,
     todo: {
@@ -14,7 +13,6 @@ const addTodo = (todo) => {
 }
 
 const deleteTodo = (index) => {
-  if (process.env.NODE_ENV !== 'production') console.info('dispatcher delete todo has been called', index)
   return ({
     type: DELETE_TODO,
     id: index,
@@ -22,7 +20,6 @@ const deleteTodo = (index) => {
 }
 
 const toggleTodo = (index) => {
-  if (process.env.NODE_ENV !== 'production') console.info('dispatcher toggle todo has been called', index)
   return ({
     type: TOGGLE_TODO,
     id: index,
@@ -30,7 +27,6 @@ const toggleTodo = (index) => {
 }
 
 const updateTimer = (index, timerStarted, timeSpent) => {
-  if (process.env.NODE_ENV !== 'production') console.info('dispatcher update timer has been called', index)
   return ({
     type: UPDATE_TIMER,
     id: index,
