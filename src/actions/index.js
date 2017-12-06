@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, TOGGLE_TIMER, UPDATE_TIMER } from './types'
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, UPDATE_TIMER } from './types'
 
 
 const addTodo = (todo) => {
@@ -29,14 +29,6 @@ const toggleTodo = (index) => {
   })
 }
 
-const toggleTimer = (index) => {
-  if (process.env.NODE_ENV !== 'production') console.info('dispatcher toggle timer has been called', index)
-  return ({
-    type: TOGGLE_TIMER,
-    id: index,
-  })
-}
-
 const updateTimer = (index, timerStarted, timeSpent) => {
   if (process.env.NODE_ENV !== 'production') console.info('dispatcher update timer has been called', index)
   return ({
@@ -47,4 +39,4 @@ const updateTimer = (index, timerStarted, timeSpent) => {
   })
 }
 
-export { addTodo, deleteTodo, toggleTodo, toggleTimer, updateTimer }
+export { addTodo, deleteTodo, toggleTodo, updateTimer }

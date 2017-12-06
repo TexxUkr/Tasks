@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, TOGGLE_TIMER, UPDATE_TIMER } from '../actions/types'
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, UPDATE_TIMER } from '../actions/types'
 
 export default function (state = { tasks: [], activeTaskFlag: false }, act) {
   const action = !(act) ? { type: 'undefined', payload: '' } : act
