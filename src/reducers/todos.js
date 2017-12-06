@@ -19,14 +19,6 @@ export default function (state = { tasks: [], activeTaskFlag: false }, act) {
         return todo
       })
       return { ...state, tasks: newTasks, activeTaskFlag: resetActiveTaskFlag ? false : state.activeTaskFlag }
-    case TOGGLE_TIMER:
-      newTasks = state.tasks.map((todo) => {
-        if (todo.id === action.id) {
-          return { ...todo, timerStarted: !todo.timerStarted }
-        }
-        return todo
-      })
-      return { ...state, tasks: newTasks }
     case UPDATE_TIMER:
       newTasks = state.tasks.map((todo) => {
         if (todo.id === action.id) return { ...todo, timerStarted: action.timerStarted, timeSpent: action.timeSpent }
