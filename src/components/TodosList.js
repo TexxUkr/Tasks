@@ -8,10 +8,7 @@ import Todo from './Todo'
 const TodosList = props => (
   <div className={props.className}>
     {
-      props.todos.length === 0 ? (null
-      ) : (
-          props.todos.map(todo => (<Todo key={todo.id} state={todo} />))
-        )
+      props.todos.map(todo => (<Todo key={todo.id} state={todo} />))
     }
   </div>
 )
