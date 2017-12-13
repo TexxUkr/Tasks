@@ -14,7 +14,7 @@
     "electron-pack": "electron-builder --dir",
     "electron-dist": "electron-builder"
   },
-  "author": "Oleg Osadchyy",
+  "author": "O Osadchyy",
   "license": "ISC",
   "dependencies": {
     "babel": "^6.23.0",
